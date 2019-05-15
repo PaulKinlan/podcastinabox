@@ -252,7 +252,7 @@
 
         if (recording) {
           // Trim off some surpluss bits
-          recordingData = recordingData.replace(/([^,]+),/, "")}
+          recordingData = recordingData.replace(/([^,]+),/, "")
         }
 
         const name = document.getElementById('name').value;
@@ -263,7 +263,8 @@
         let recording = {
           name: `${fileName}.webm`,
           data: recordingData
-        }
+        };
+
         const main = editorData.blocks.map((cur) => {
           if (cur.type === 'paragraph') return htmlEncode(cur.data.text) + '\n';
           if (cur.type === 'quote') return `> ${htmlEncode(cur.data.text).split('\n').join('\n> ')}\n\n${cur.data.caption}\n`;
