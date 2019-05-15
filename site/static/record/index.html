@@ -110,13 +110,12 @@
       }
     };
 
-    const createFile = async (filename, data, images, commitMessage) => {
+    const createFile = async (filename, data, images, commitMessage, recording) => {
       try {
         const token = localStorage.getItem('accessToken');
         const github = new Octokat({ 'token': token });
         const markdownPath = `content/en/${filename}.markdown`.toLowerCase();
-        
-
+      
         let repo = await github.repos('paulkinlan', 'paul.kinlan.me').fetch();
         let main = await repo.git.refs('heads/main').fetch();
         let treeItems = [];
@@ -127,6 +126,17 @@
           treeItems.push({
             path: imagePath,
             sha: imageGit.sha,
+            mode: "100644",
+            type: "blob"
+            });
+        }
+
+        if (recording) {
+          let audioGit = await repo.git.blobs.create({ content: recording.data, encoding: 'base64' });
+          let audioPath = `static/audio/${recording.name}`.toLowerCase();
+          treeItems.push({
+            path: audioPath,
+            sha: audioGit.sha,
             mode: "100644",
             type: "blob"
             });
@@ -192,12 +202,30 @@
       output.textContent += str + '\n';
     }
 
+    const record = async (callback) => {
+      const opts = {mimeType: 'video/webm; codecs=vp8'};
+      const blobs = [];
+      const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+      rec = new MediaRecorder(stream, opts);
+      rec.ondataavailable = (e) => blobs.push(e.data);
+      rec.onstop = () => {
+        const blob = new Blob(blobs, {type: 'video/webm'});
+        const file = new File(blob);
+        const reader = file.readAsDataURL(() => {
+          callback(reader)
+        });
+      };      
+      return;
+    };
+
     onload = async () => {
       navigator.serviceWorker.register('sw.js');
 
       const noteForm = document.getElementById('noteform');
+      const recordNow = document.getElementById('recordNow');
       const file = document.getElementById('file');
       const authenticate = document.getElementById('authenticate');
+      let recordingData;
       
       if (localStorage.getItem('accessToken') !== null) {
         authenticate.style.display = 'none';
@@ -206,6 +234,12 @@
       authenticate.onclick = async () => {
         await auth();
       };
+
+      recordnow.addEventListener('click', async () => {
+        record((data) => {
+          recordingData = data;
+        });
+      });
 
       noteForm.onsubmit = async (event) => {
         event.preventDefault();
@@ -216,11 +250,20 @@
           logToToast('Please Authenticate')
         }
 
+        if (recording) {
+          // Trim off some surpluss bits
+          recordingData = recordingData.replace(/([^,]+),/, "")}
+        }
+
         const name = document.getElementById('name').value;
         const cleanName = name.replace(/[^a-zA-Z0-9\-_]/g, '-').replace(/-{2,}/g,'');
         const dateParts = new Date().toISOString().split('T');
         const fileName = `${dateParts[0]}-${cleanName}`;
         let images = [];
+        let recording = {
+          name: `${fileName}.webm`,
+          data: recordingData
+        }
         const main = editorData.blocks.map((cur) => {
           if (cur.type === 'paragraph') return htmlEncode(cur.data.text) + '\n';
           if (cur.type === 'quote') return `> ${htmlEncode(cur.data.text).split('\n').join('\n> ')}\n\n${cur.data.caption}\n`;
@@ -237,10 +280,11 @@
 slug: ${cleanName.toLowerCase()}
 date: ${dateParts.join('T')}
 title: '${name}'
+recording_path: /audio/${recording.name}
 ---
 ${main.join('\n')}
 `;
-        createFile(fileName, body, images, cleanName);
+        createFile(fileName, body, images, cleanName, recording);
       };
       populateFields();
     }
@@ -269,7 +313,11 @@ ${main.join('\n')}
     </div>
 
     <div>
-      <input type='file'>
+      <label for="podcastrecording">Podcast file:</label>
+      <input type="file" name="podcastrecording">
+
+      <label for="recordnow">Record Now:</label>
+      <input type="button" name="recordnow">
     </div>
 
     <br>
