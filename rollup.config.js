@@ -5,9 +5,9 @@ import globals from 'rollup-plugin-node-globals';
 import closure from 'rollup-plugin-closure-compiler-js';
 
 export default {
-  input: 'static/javascripts/get-urls.js',
+  input: 'site/static/javascripts/get-urls.js',
   output: {
-      file: 'static/javascripts/get-urls.bundle.mjs',
+      file: 'site/static/javascripts/get-urls.bundle.mjs',
       format: 'es',
       browser: true
     },
