@@ -114,7 +114,7 @@
       try {
         const token = localStorage.getItem('accessToken');
         const github = new Octokat({ 'token': token });
-        const markdownPath = `content/en/${filename}.markdown`.toLowerCase();
+        const markdownPath = `site/content/en/${filename}.markdown`.toLowerCase();
       
         let repo = await github.repos('paulkinlan', 'paul.kinlan.me').fetch();
         let main = await repo.git.refs('heads/main').fetch();
@@ -122,7 +122,7 @@
 
         for(let image of images) {
           let imageGit = await repo.git.blobs.create({ content: image.data, encoding: 'base64' });
-          let imagePath = `static/images/${image.name}`.toLowerCase();
+          let imagePath = `site/static/images/${image.name}`.toLowerCase();
           treeItems.push({
             path: imagePath,
             sha: imageGit.sha,
@@ -133,7 +133,7 @@
 
         if (recording) {
           let audioGit = await repo.git.blobs.create({ content: recording.data, encoding: 'base64' });
-          let audioPath = `static/audio/${recording.name}`.toLowerCase();
+          let audioPath = `site/static/audio/${recording.name}.webm`.toLowerCase();
           treeItems.push({
             path: audioPath,
             sha: audioGit.sha,
@@ -261,7 +261,7 @@
         const fileName = `${dateParts[0]}-${cleanName}`;
         let images = [];
         let recording = {
-          name: `${fileName}.webm`,
+          name: `${fileName}`,
           data: recordingData
         };
 
@@ -281,7 +281,8 @@
 slug: ${cleanName.toLowerCase()}
 date: ${dateParts.join('T')}
 title: '${name}'
-recording_path: /audio/${recording.name}
+mp3: /audio/${recording.name}.mp3
+webm: /audio/${recording.name}.webm
 ---
 ${main.join('\n')}
 `;
