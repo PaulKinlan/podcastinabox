@@ -2,6 +2,8 @@
 
 yum install -y wget
 
+git submodule update --init --recursive -j 8
+
 npm install
 
 sh install-hugo.sh
@@ -15,6 +17,5 @@ cp -r node_modules/@editorjs/code/dist/bundle.js static/javascripts/editorjs/cod
 cp -r node_modules/@editorjs/list/dist/bundle.js static/javascripts/editorjs/list.js
 cp -r node_modules/@editorjs/link/dist/bundle.js static/javascripts/editorjs/link.js
 cp -r node_modules/@editorjs/simple-image/dist/bundle.js static/javascripts/editorjs/simple-image.js
-cp -r node_modules/pinch-zoom-element/dist static/javascripts/pinch-zoom-element
 
 ./hugo -d dist
