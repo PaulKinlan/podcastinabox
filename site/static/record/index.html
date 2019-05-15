@@ -200,29 +200,31 @@
     const logToToast = (str) => {
       const output = document.getElementById('output');
       output.textContent += str + '\n';
-    }
+    };
+
+    let recorder;
 
     const record = async (callback) => {
       const opts = {mimeType: 'video/webm; codecs=vp8'};
       const blobs = [];
       const stream = await navigator.mediaDevices.getUserMedia({audio: true});
-      rec = new MediaRecorder(stream, opts);
-      rec.ondataavailable = (e) => blobs.push(e.data);
-      rec.onstop = () => {
+      recorder = new MediaRecorder(stream, opts);
+      recorder.ondataavailable = (e) => blobs.push(e.data);
+      recorder.onstop = () => {
         const blob = new Blob(blobs, {type: 'video/webm'});
         const file = new File(blob);
         const reader = file.readAsDataURL(() => {
           callback(reader)
         });
-      };      
-      return;
+      };
     };
 
     onload = async () => {
       navigator.serviceWorker.register('sw.js');
 
       const noteForm = document.getElementById('noteform');
-      const recordNow = document.getElementById('recordNow');
+      const startRecord = document.getElementById('startRecord');
+      const stopRecord = document.getElementById('stopRecord');
       const file = document.getElementById('file');
       const authenticate = document.getElementById('authenticate');
       let recordingData;
@@ -235,10 +237,16 @@
         await auth();
       };
 
-      recordnow.addEventListener('click', async () => {
+      startRecord.addEventListener('click', () => {
         record((data) => {
           recordingData = data;
         });
+      });
+
+      stopRecord.addEventListener('click', () => {
+        if (recorder) {
+          recorder.stop();
+        }
       });
 
       noteForm.onsubmit = async (event) => {
@@ -318,8 +326,9 @@ ${main.join('\n')}
       <label for="podcastrecording">Podcast file:</label>
       <input type="file" name="podcastrecording">
 
-      <label for="recordnow">Record Now:</label>
-      <input type="button" name="recordnow">
+      <label for="startRecord">Record Now:</label>
+      <input type="button" name="startRecord">
+      <input type="button" name="stopRecord">
     </div>
 
     <br>
