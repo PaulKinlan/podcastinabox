@@ -16,12 +16,9 @@
   <script src="/javascripts/editorjs/simple-image.js"></script>
   <script src="/javascripts/editorjs/quote.js"></script>
   <script src="/javascripts/octokat.js"></script>
-  <script type="module">
-    import getUrls from '/javascripts/get-urls.bundle.mjs';
-    
+  <script type="module"> 
     const url = new URL(location);
     const description = url.searchParams.get('text');
-    const urlsInText = getUrls(url.searchParams.get('text') || "");
     let data = {};
     let editor;
 
@@ -133,7 +130,7 @@
 
         if (recording) {
           let audioGit = await repo.git.blobs.create({ content: recording.data, encoding: 'base64' });
-          let audioPath = `site/static/audio/${recording.name}.webm`.toLowerCase();
+          let audioPath = `site/static/audio/${recording.name}.ogg`.toLowerCase();
           treeItems.push({
             path: audioPath,
             sha: audioGit.sha,
@@ -205,19 +202,21 @@
     let recorder;
 
     const record = async (callback) => {
-      const opts = {mimeType: 'video/webm; codecs=vp8'};
+      const opts = {mimeType: 'audio/webm; codecs=opus'};
       const blobs = [];
       const stream = await navigator.mediaDevices.getUserMedia({audio: true});
       recorder = new MediaRecorder(stream, opts);
       recorder.ondataavailable = (e) => blobs.push(e.data);
       recorder.onstop = () => {
-        const blob = new Blob(blobs, {type: 'video/webm'});
-        const file = new File(blob);
-        const reader = file.readAsDataURL(() => {
+        const blob = new Blob(blobs, {type: 'audio/webm'});
+        const reader = new FileReader();
+        reader.readAsDataURL(blob)
+        reader.addEventListener('load', () => {
           const url = URL.createObjectURL(blob);
-          callback(url, reader)
+          callback(url, reader.result)
         });
       };
+      recorder.start();
     };
 
     onload = async () => {
@@ -295,7 +294,7 @@ slug: ${cleanName.toLowerCase()}
 date: ${dateParts.join('T')}
 title: '${name}'
 mp3: /audio/${recording.name}.mp3
-webm: /audio/${recording.name}.webm
+ogg: /audio/${recording.name}.ogg
 ---
 ${main.join('\n')}
 `;
@@ -332,15 +331,16 @@ ${main.join('\n')}
       <input type="file" name="podcastrecording">
 
       <label for="startRecord">Record Now:</label>
-      <input type="button" name="startRecord" id="startRecord">
-      <input type="button" name="stopRecord" id="stopRecord">
-      <audio id="podcastPlayback"></audio>
+      <input type="button" name="startRecord" id="startRecord" value="Record">
+      <input type="button" name="stopRecord" id="stopRecord" value="Stop Recording">
+      <audio id="podcastPlayback" controls></audio>
     </div>
 
     <br>
 
-    <div id="editor"></div>
-
+    <div>
+      <div id="editor"></div>
+    </div>
     <input type="submit" value="Save">
   </form>
   
