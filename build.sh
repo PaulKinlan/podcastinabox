@@ -18,4 +18,4 @@ cp -r node_modules/@editorjs/list/dist/bundle.js static/javascripts/editorjs/lis
 cp -r node_modules/@editorjs/link/dist/bundle.js static/javascripts/editorjs/link.js
 cp -r node_modules/@editorjs/simple-image/dist/bundle.js static/javascripts/editorjs/simple-image.js
 
-./hugo -d dist
+./hugo -d dist --minify
