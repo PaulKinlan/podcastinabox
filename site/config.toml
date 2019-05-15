@@ -1,4 +1,4 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Podcast in a box"
-theme = "terminal"
+theme = "cocoa"
