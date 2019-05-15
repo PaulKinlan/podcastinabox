@@ -22,10 +22,6 @@
     let data = {};
     let editor;
 
-    navigator.serviceWorker.onmessage = (event) => {
-      initEditor(event.data.file);
-    };
-
     const initEditor = (imageBlob) => {
       const editorElement = document.getElementById('editor');
       editorElement.innerHTML = '';
@@ -226,9 +222,8 @@
         recording.data = reader.result;
       });
     };
-    onload = async () => {
-      navigator.serviceWorker.register('sw.js');
 
+    onload = async () => {
       const noteForm = document.getElementById('noteform');
       const startRecord = document.getElementById('startRecord');
       const stopRecord = document.getElementById('stopRecord');
