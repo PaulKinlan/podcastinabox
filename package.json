@@ -1,0 +1,31 @@
+{
+  "name": "podcastinabox",
+  "devDependencies": {
+    "@editorjs/code": "^2.0.0",
+    "@editorjs/editorjs": "^2.0.0",
+    "@editorjs/header": "^2.0.0",
+    "@editorjs/link": "^2.0.0",
+    "@editorjs/list": "^1.0.0",
+    "@editorjs/paragraph": "^2.0.0",
+    "@editorjs/quote": "^2.0.0",
+    "@editorjs/raw": "^2.0.0",
+    "@editorjs/simple-image": "^1.0.0",
+    "@now/static-build": "*",
+    "file-drop-element": "^0.2.0",
+    "js-yaml": "^3.13.1",
+    "now": "^15.0.0",
+    "request": "^2.88.0",
+    "rollup-plugin-closure-compiler-js": "^1.0.6",
+    "rollup-plugin-commonjs": "^9.2.1",
+    "rollup-plugin-node-builtins": "^2.1.2",
+    "rollup-plugin-node-resolve": "^4.0.1",
+    "rollup-plugin-node-globals": "^1.4.0",
+    "serve": "^10.1.2",
+    "sw-runtime-caching": "0.0.22"
+  },
+  "dependencies": {
+    "commander": "^2.19.0",
+    "get-urls": "^9.0.0",
+    "octokat": "^0.10.0"
+  }
+}
