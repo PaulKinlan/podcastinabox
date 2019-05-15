@@ -1,7 +1,6 @@
 {
   "version": 2,
   "name": "podcastinabox",
-  "//alias": [""],
   "builds": [
     {
       "src": "build.sh",
