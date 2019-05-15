@@ -214,7 +214,8 @@
         const blob = new Blob(blobs, {type: 'video/webm'});
         const file = new File(blob);
         const reader = file.readAsDataURL(() => {
-          callback(reader)
+          const url = URL.createObjectURL(blob);
+          callback(url, reader)
         });
       };
     };
@@ -238,7 +239,11 @@
       };
 
       startRecord.addEventListener('click', () => {
-        record((data) => {
+        record((url, base64data) => {
+          // We will need to do some extra processing here
+          // Convert to MP3. Get the length of the media.
+          const podcastPlayback = document.getElementById("podcastPlayback");
+          podcastPlayback.src = url;
           recordingData = data;
         });
       });
@@ -327,8 +332,9 @@ ${main.join('\n')}
       <input type="file" name="podcastrecording">
 
       <label for="startRecord">Record Now:</label>
-      <input type="button" name="startRecord">
-      <input type="button" name="stopRecord">
+      <input type="button" name="startRecord" id="startRecord">
+      <input type="button" name="stopRecord" id="stopRecord">
+      <audio id="podcastPlayback"></audio>
     </div>
 
     <br>
