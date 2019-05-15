@@ -2,3 +2,8 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Podcast in a box"
 theme = "cocoa"
+
+[params]
+  author = "Author Name"
+  email = "email@email.com"
+  description = "Awesome Podcast"
