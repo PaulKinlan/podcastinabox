@@ -1,4 +1,5 @@
 HUGO_VERSION=0.54.0
+FFMPEG_VERSION="ffmpeg-release-i686-static.tar.xz"
 
 set -x
 set -e
@@ -20,8 +21,8 @@ if [ ! -e .hugo ] || ! [[ `hugo version` =~ v${HUGO_VERSION} ]]; then
 fi
 
 if [ ! -e ffmpeg ]; then
-  wget --no-check-certificate https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz
-  FFMPEG="$(tar -tf ffmpeg-release-i686-static.tar.xz --wildcards '*/ffmpeg')"
-  tar -xf ffmpeg-release-i686-static.tar.xz --wildcards '*/ffmpeg'
+  wget --no-check-certificate ${FFMPEG_VERSION}
+  FFMPEG="$(tar -tf ${FFMPEG_VERSION} --wildcards '*/ffmpeg')"
+  tar -xf ${FFMPEG_VERSION} --wildcards '*/ffmpeg'
   cp ${FFMPEG} .
 fi
