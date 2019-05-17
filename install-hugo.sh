@@ -21,7 +21,7 @@ if [ ! -e .hugo ] || ! [[ `hugo version` =~ v${HUGO_VERSION} ]]; then
 fi
 
 if [ ! -e ffmpeg ]; then
-  wget --no-check-certificate ${FFMPEG_VERSION}
+  wget --no-check-certificate https://johnvansickle.com/ffmpeg/releases/${FFMPEG_VERSION}
   FFMPEG="$(tar -tf ${FFMPEG_VERSION} --wildcards '*/ffmpeg')"
   tar -xf ${FFMPEG_VERSION} --wildcards '*/ffmpeg'
   cp ${FFMPEG} .
