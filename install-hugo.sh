@@ -19,7 +19,7 @@ if [ ! -e .hugo ] || ! [[ `hugo version` =~ v${HUGO_VERSION} ]]; then
   cp .hugo/hugo ./hugo
 fi
 
-if [ ! -e ffmpeg]; then
+if [ ! -e ffmpeg ]; then
   wget --no-check-certificate https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-i686-static.tar.xz
   tar xvf ffmpeg-release-i686-static.tar.xz -c ffmpeg/
   PATH="$PATH:ffmpeg/"
