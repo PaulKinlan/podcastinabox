@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="iem7"><![endif]-->
+<html lang="{{.Page.Lang}}">
+<head lang="{{.Page.Lang}}">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ range $.Page.AllTranslations }}
+  <link rel="alternate" hreflang="{{.Lang}}" href="{{.URL}}" />{{if eq .Lang "en"}}
+  <link rel="alternate" hreflang="x-default" href="{{.URL}}" />{{end}}
+  {{ end }}
+  <title>{{if .IsPage }}{{ if .Title }}{{ .Title }}{{ end }}{{end}}</title>
+  <link rel="canonical" href="{{ .Page.Permalink }}" />
+  <meta name="author" content="{{ .Site.Params.author }}">
+  <meta name="theme-color" content="{{ if .Params.themecolor }}#{{ .Params.themecolor}}{{ else }}#000000{{ end }}">
+  <meta name="description" content="{{if .Description}}{{ .Description }}{{else}}{{.Site.Params.Description}}{{end}}">
+{{ if eq .Type "page" }}
+  <link href="/manifest.json" rel="manifest">
+  <link rel="home" href="{{.Site.BaseURL}}">
+  {{ range .AlternativeOutputFormats -}}
+  <link rel="{{ .Rel }}" type="{{ .MediaType.Type }}" href="{{ .Permalink | safeURL }}">
+  {{ end -}}
+{{ end }}
+</head>

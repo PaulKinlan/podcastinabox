@@ -2,6 +2,8 @@ baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "Podcast in a box"
 
+disableKinds = ["section", "taxonomy", "taxonomyTerm"]
+
 [params]
   author = "Author Name"
   email = "email@email.com"
