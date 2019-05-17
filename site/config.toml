@@ -1,4 +1,4 @@
-baseURL = "http://example.org/"
+baseURL = "https://podcastinabox.kinlan.now.sh/"
 languageCode = "en-us"
 title = "Podcast in a box"
 
