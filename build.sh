@@ -1,7 +1,9 @@
 #! /bin/bash
 
-yum install -y wget
-yum install -y ffmpeg
+yum install epel-release -y
+yum update -y
+yum install -y wget ffmpeg
+
 
 git submodule update --init --recursive -j 8
 
