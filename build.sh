@@ -11,6 +11,6 @@ sh install-hugo.sh
 
 # Convert all the files.
 # When this gets big we might not want to do this.
-for i in site/static/audio/*.webm; do ffmpeg -i "$i" "site/static/audio/${i%.*}.mp3"; done
+for i in site/static/audio/*.webm; do ffmpeg -i "$i" "${i%.*}.mp3"; done
 
 ./hugo -s ./site/ -d ../dist --minify
