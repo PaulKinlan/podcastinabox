@@ -1,10 +1,17 @@
 baseURL = "https://podcastinabox.kinlan.now.sh/"
 languageCode = "en-us"
 title = "Podcast in a box"
+disableKinds = ["taxonomy", "taxonomyTerm"]
 
-disableKinds = ["section", "taxonomy", "taxonomyTerm"]
+[permalinks]
+  post = "/:title/"
 
 [params]
   author = "Author Name"
   email = "email@email.com"
   description = "Awesome Podcast"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+  page = ["HTML"]
