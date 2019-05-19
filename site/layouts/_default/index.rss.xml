@@ -43,7 +43,7 @@
 
         <itunes:author>{{ .Params.author }}</itunes:author>
         <itunes:summary>{{ .Content | html }}</itunes:summary>
-        <itunes:image href="" />
+        <itunes:image href="{{.Params.image}}" />
         <itunes:duration>{{ .Params.duration }}</itunes:duration>
     {{ end }}
   </channel>
