@@ -29,7 +29,7 @@
     </itunes:owner>
     <itunes:block>no</itunes:block>
     <itunes:explicit>no</itunes:explicit>
-    <itunes:image href="" />
+    <itunes:image href="{{ .Site.Params.image }}" />
     {{ range first 15 .Data.Pages }}
     <item>
         <link>{{ .Permalink }}</link>
