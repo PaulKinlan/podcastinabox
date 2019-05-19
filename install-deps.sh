@@ -23,6 +23,8 @@ fi
 if [ ! -e ffmpeg ]; then
   wget -q --no-check-certificate https://johnvansickle.com/ffmpeg/releases/${FFMPEG_VERSION}
   FFMPEG="$(tar -tf ${FFMPEG_VERSION} --wildcards '*/ffmpeg')"
-  tar -xf ${FFMPEG_VERSION} --wildcards '*/ffmpeg'
+  FFPROBE="$(tar -tf ${FFMPEG_VERSION} --wildcards '*/ffprobe')"
+  tar -xf ${FFMPEG_VERSION} --wildcards '*/ff*'
   cp ${FFMPEG} .
+  cp ${FFPROBE} .
 fi
