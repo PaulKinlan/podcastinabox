@@ -37,8 +37,7 @@
         <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
         <description>{{ .Params.summary }}</description>
 
-        <enclosure url="{{ .Params.mp3 }}" length="{{ .Params.mp3length }}" type="audio/mpeg" />
-        <enclosure url="{{ .Params.webm }}" length="{{ .Params.webmlength }}" type="audio/webm" />
+        <enclosure url="{{ .Params.mp3 }}" length="{{ index (index (index .Site.Data (path.Base .Params.mp3)).streams 0) "duration"}}" type="audio/mpeg" />
         <guid>{{ .Params.mp3 }}</guid>
 
         <itunes:author>{{ .Params.author }}</itunes:author>
