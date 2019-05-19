@@ -44,6 +44,7 @@
         <itunes:summary>{{ .Content | html }}</itunes:summary>
         <itunes:image href="{{.Params.image}}" />
         <itunes:duration>{{ .Params.duration }}</itunes:duration>
+    </item>
     {{ end }}
   </channel>
 </rss>
