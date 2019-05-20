@@ -1,5 +1,11 @@
 {{ partial "head.html" . }}
 <body>
+    <header class="limit-width header">
+      <h1 class="site-title">{{ if .Params.image }}<img src="{{ .Params.image }}" alt="{{.Title}}">{{end}}</h1>
+      <h2>{{.Title}}</h2>
+    </header>
+    <main>
     <audio controls src="{{.Params.mp3}}"></audio>
     {{ .Content }}
+    </main>
 </body>

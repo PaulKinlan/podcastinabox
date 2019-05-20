@@ -1,18 +1,18 @@
 {{ partial "head.html" . }}
 
 <body class="list h-feed">
-  <header class="me">
-    <h1>{{.Title}}</h1>
+
+  <header>
+    <h1><img src="{{ .Site.Params.image }}" alt="{{.Title}}"></h1>
+    <h2>{{.Title}}</h2>
   </header>
-  <div>
-      <main class="hfeed">
+  <main class="hfeed">
 {{ $paginator := .Paginate (where .Site.Pages "Type" "page") }}
 {{ range $index, $element := $paginator.Pages }}
  
-  <div class="post entry"> 
+  <div class="entry"> 
     <header class="{{ if .Params.image_header }}with-background{{end}}" style="{{ if .Params.image_header }}background-image: url('{{ .Params.image_header }}'); {{end}}">
-       <h3> <a href="{{ if .Params.link }}{{.Params.link}}{{ else }}{{ .Permalink }}{{end}}" class="entry-title u-url">{{ .Title}}</a>
-        {{ if .Params.link }} &mdash; <a href="{{.Permalink}}">⭐</a>{{end}}</h3>
+       <h3> <a href="{{ if .Params.link }}{{.Params.link}}{{ else }}{{ .Permalink }}{{end}}" class="entry-title u-url">{{ .Title}}</a></h3>
     </header>
     <div class="description">
       <div class="author hcard">
@@ -27,6 +27,11 @@
           {{ if .Description }}{{ .Description | html }}{{ else }}{{ .Summary }}{{ end }}
         {{end}}
       </p>
+      {{ if (eq $index 0) }}
+      <div>
+          <audio controls src="{{.Params.mp3}}"></audio>
+      </div>
+      {{end}}
       {{ if .Translations }}
       <div class="langs">
           Available in: 
@@ -56,7 +61,6 @@
     {{ end }}
     </div>
   </nav>
-  </main>
-</div>
+</main>
 </body>
 </html>

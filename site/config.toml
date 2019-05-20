@@ -16,3 +16,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
   home = ["HTML", "RSS"]
   section = ["HTML"]
   page = ["HTML"]
+
+[mediaTypes]
+  [mediaTypes."text/javascript"]
+    suffixes = ["js", "mjs"]

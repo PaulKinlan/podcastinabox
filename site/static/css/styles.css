@@ -1,0 +1,8 @@
+html {
+  display: flex;
+}
+
+body {
+  margin: auto;
+  max-width: 760px;
+}
