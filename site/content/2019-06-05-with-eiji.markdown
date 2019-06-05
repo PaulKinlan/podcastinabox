@@ -1,6 +1,6 @@
 ---
 slug: with-eiji
-date: 2019-06-05T11:22:43.238Z
+date: 2019-06-05T11:24:21.692Z
 title: 'With Eiji'
 mp3: /audio/2019-06-05-with-eiji.mp3
 webm: /audio/2019-06-05-with-eiji.webm
