@@ -6,3 +6,18 @@ body {
   margin: auto;
   max-width: 760px;
 }
+
+.entry {
+  border: 1px solid rgba(0,0,0,0.12);
+  padding: 1em;
+  border-radius: 5px;
+  margin: 1em 0;
+  background-color: #fafafa;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  font-family: 'Roboto', 'Helvetica', 'Arial';
+  font-size: 1em;
+}
+
+.entry header {
+  font-size: 1.2em;
+}
