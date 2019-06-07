@@ -18,3 +18,4 @@ node_modules
 resources/
 ffmpeg*
 ffprob*
+site/data
