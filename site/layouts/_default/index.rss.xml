@@ -15,20 +15,22 @@
     <lastBuildDate>{{ .Date }}</lastBuildDate>
     <sy:updatePeriod>hourly</sy:updatePeriod>
     <sy:updateFrequency>1</sy:updateFrequency>
-    <language>en</language>
+    <language>{{ if .Site.LanguageCode}}{{.Site.LanguageCode}}{{else}}en{{end}}</language>
     <copyright>{{ with .Site.Copyright }}{{.}}{{ end }}</copyright>
     <itunes:new-feed-url>{{ .Site.BaseURL }}/index.xml</itunes:new-feed-url>
     <itunes:summary>"{{ .Site.Params.description }}"</itunes:summary>
-    <itunes:category text="Technology">
-        <itunes:category text="Tech News" />
+    {{ if .Params.category }}
+    <itunes:category text="{{.Params.category}}">
+      {{ if .Params.subcategory }}<itunes:category text="{{.Params.subcategory}}" />{{end}}
     </itunes:category>
+    {{ end }}
     <itunes:author>"{{ .Site.Params.author }}"</itunes:author>
     <itunes:owner>
         <itunes:name>"{{ .Site.Params.author }}"</itunes:name>
         <itunes:email>"{{ .Site.Params.email }}"</itunes:email>
     </itunes:owner>
-    <itunes:block>no</itunes:block>
-    <itunes:explicit>no</itunes:explicit>
+    <itunes:block>{{ if .Params.block }}{{ .Params.block }}{{else}}no{{end}}</itunes:block>
+    <itunes:explicit>{{ if .Params.explicit }}{{ .Params.explicit }}{{else}}no{{end}}</itunes:explicit>
     <itunes:image href="{{ .Site.Params.image }}" />
     {{ range first 15 .Data.Pages }}
     <item>
@@ -40,9 +42,9 @@
         <enclosure url="{{ .Params.mp3 }}" length="{{ index (index (index .Site.Data (path.Base .Params.mp3)).streams 0) "duration"}}" type="audio/mpeg" />
         <guid>{{ .Params.mp3 }}</guid>
 
-        <itunes:author>{{ .Params.author }}</itunes:author>
+        <itunes:author>{{ if .Params.author }}{{ .Params.author }}{{else}}{{ .Site.Params.author }}{{end}}</itunes:author>
         <itunes:summary>{{ .Content | html }}</itunes:summary>
-        <itunes:image href="{{.Params.image}}" />
+        <itunes:image href="{{ if .Params.image }}{{.Params.image}}{{else}}{{.Site.Params.image}}{{end}}" />
         <itunes:duration>{{ .Params.duration }}</itunes:duration>
     </item>
     {{ end }}

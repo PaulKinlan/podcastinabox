@@ -11,6 +11,11 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
   image = "/images/web_hi_res_512.png"
   email = "email@email.com"
   description = "Awesome Podcast"
+  category = ""
+  subcategory = ""
+  explicit = "no"
+  block = "no"
+  
 
 [outputs]
   home = ["HTML", "RSS"]
