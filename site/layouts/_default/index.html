@@ -1,7 +1,6 @@
 {{ partial "head.html" . }}
 
 <body class="list h-feed">
-
   <header>
     <h1><img src="{{ .Site.Params.image }}" alt="{{.Title}}"></h1>
     <h2>{{.Title}}</h2>
@@ -9,9 +8,8 @@
   <main class="hfeed">
 {{ $paginator := .Paginate (where .Site.Pages "Type" "page") }}
 {{ range $index, $element := $paginator.Pages }}
- 
   <div class="entry"> 
-    <header class="{{ if .Params.image_header }}with-background{{end}}" style="{{ if .Params.image_header }}background-image: url('{{ .Params.image_header }}'); {{end}}">
+    <header class="{{ if .Params.image }}with-background{{end}}" style="{{ if .Params.image_header }}background-image: url('{{ .Params.image_header }}'); {{end}}">
        <h3> <a href="{{ if .Params.link }}{{.Params.link}}{{ else }}{{ .Permalink }}{{end}}" class="entry-title u-url">{{ .Title}}</a></h3>
     </header>
     <div class="description">
@@ -28,7 +26,7 @@
         {{end}}
       </p>
       {{ if (eq $index 0) }}
-      <div>
+      <div class=player>
         <audio controls src="{{.Params.mp3}}"></audio>
       </div>
       {{end}}
@@ -42,19 +40,10 @@
           <path d="M18.5,22.5h2v2h-2Zm0-8h2v6h-2Zm1-5a10,10,0,1,0,10,10A10,10,0,0,0,19.49,9.5Zm0,18a8,8,0,1,1,8-8A8,8,0,0,1,19.5,27.5Z" class="action-error action-off"></path>
         </svg></a>
       </div>
-      {{ if .Translations }}
-      <div class="langs">
-          Available in: 
-          {{ range $i, $e := .Translations }}{{ if $i }}, {{end}}<a href="{{$e.Permalink}}">{{$e.Language.LanguageName}}{{ if eq $e.Lang "en"}}(Original){{end}}</a>{{ end }}
-      </div>
-      {{ end }}
       <div style="text-align: right;">
-      {{ if not .Params.link }}
-      <a class="read-more" href="{{ .Permalink }}">
-         Read More
-      </a>
-      {{else}}
-      {{ $tags := .Params.tags}}{{end}}
+        <a class="read-more" href="{{ .Permalink }}">
+          Read More
+        </a>
       </div>
     </div>
   </div>

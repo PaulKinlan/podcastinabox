@@ -25,3 +25,7 @@ body {
 .entry time {
   color: rgba(0, 0, 0, 0.95);
 }
+
+.entry .author {
+  border-bottom:rgba(0, 0, 0, 0.75)
+}

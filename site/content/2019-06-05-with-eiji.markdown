@@ -4,6 +4,7 @@ date: 2019-06-05T11:24:21.692Z
 title: 'With Eiji'
 mp3: /audio/2019-06-05-with-eiji.mp3
 webm: /audio/2019-06-05-with-eiji.webm
+image: /images/2019-05-20-surma-was-here--0.jpeg
 ---
 
 This is Paul and Eiji.
