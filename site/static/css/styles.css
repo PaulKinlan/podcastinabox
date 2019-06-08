@@ -7,6 +7,14 @@ body {
   max-width: 760px;
 }
 
+header img {
+  width: 100%;
+}
+
+header h1 {
+  margin: 0;
+}
+
 .entry {
   border: 1px solid rgba(0,0,0,0.12);
   padding: 0em 1em 1em;
