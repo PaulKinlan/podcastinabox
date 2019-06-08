@@ -21,7 +21,12 @@ body {
 
 .entry header {
   font-size: 1.2em;
-  margin: -1em;
+  margin: -1em -1em 1em;
+}
+
+.entry header h3 {
+  margin: 0;
+  padding: 2em 1em;
 }
 
 .entry time {
@@ -44,6 +49,7 @@ body {
   padding-right: 10px;
   cursor: pointer;
   position: relative;
+  display: inline-block;
 }
 
 @keyframes action-enter {
