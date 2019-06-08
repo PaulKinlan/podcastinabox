@@ -9,8 +9,8 @@
 {{ $paginator := .Paginate (where .Site.Pages "Type" "page") }}
 {{ range $index, $element := $paginator.Pages }}
   <div class="entry"> 
-    <header class="{{ if .Params.image }}with-background{{end}}" style="{{ if .Params.image_header }}background-image: url('{{ .Params.image_header }}'); {{end}}">
-       <h3> <a href="{{ if .Params.link }}{{.Params.link}}{{ else }}{{ .Permalink }}{{end}}" class="entry-title u-url">{{ .Title}}</a></h3>
+    <header class="{{ if .Params.image }}with-background{{end}}" style="{{ if .Params.image }}background-image: url('{{ .Params.image }}'); {{end}}">
+      <h3> <a href="{{ if .Params.link }}{{.Params.link}}{{ else }}{{ .Permalink }}{{end}}" class="entry-title u-url">{{ .Title}}</a></h3>
     </header>
     <div class="description">
       <div class="author hcard">
