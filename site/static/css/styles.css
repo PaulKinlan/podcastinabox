@@ -29,6 +29,11 @@ header h1 {
 
 .entry header {
   font-size: 1.2em;
+  margin: -1em -1em;
+}
+
+.entry header.with_background {
+  height: 12em;
   margin: -1em -1em 1em;
 }
 
