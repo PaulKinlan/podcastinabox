@@ -98,7 +98,7 @@ body.post > header img {
 }
 
 .action-button svg {
-  touch-action: none;
+  pointer-events: none;
 }
 
 @keyframes action-enter {
