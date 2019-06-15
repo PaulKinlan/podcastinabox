@@ -7,7 +7,7 @@ body {
   max-width: 760px;
 }
 
-header {
+body > header {
   position: sticky;
   top: 0;
 }
