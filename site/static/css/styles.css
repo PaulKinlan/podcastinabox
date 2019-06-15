@@ -54,9 +54,15 @@ header h1 {
   overflow: hidden;
 }
 
+.entry .description .links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .action-button {
   all: unset;
-  --size: 53px;
+  --size: 32px;
   width: var(--size);
   height: var(--size);
   padding-right: 10px;
