@@ -16,7 +16,6 @@ const downloadHandler = async (event) => {
   const id = src;
   const size = element.getAttribute('size');
   const image = element.getAttribute('image');
-
   const reg = await navigator.serviceWorker.ready;
   let bgFetch = await reg.backgroundFetch.get(id) ||
                 await reg.backgroundFetch.fetch(id, [src], {
@@ -24,6 +23,11 @@ const downloadHandler = async (event) => {
     icons: [{ sizes: '300x300', src: image, type: 'image/jpeg' }],
     downloadTotal: size
   });
+
+  if (svgAbort.classList.contains('action-on')) {
+    bgFetch.abort(id);
+    return;
+  }
 
   const bgFetchProgress = (progressEvent) => {
     console.log(progressEvent);
@@ -48,7 +52,7 @@ const downloadHandler = async (event) => {
 
   svgAbort.addEventListener('click', () => {
     bgFetch.abort(id);
-  })
+  });
 
   bgFetch.addEventListener('progress', bgFetchProgress);
 };
