@@ -7,10 +7,10 @@ const downloadHandler = async (event) => {
 
   const element = event.target;
   const svg = element.closest('svg');
-  const svgProgress = svg.querySelector('action-progress');
-  const svgError = svg.querySelector('action-error');
-  const svgAbort = svg.querySelector('action-abort');
-  const svgDl = svg.querySelector('action-dl');
+  const svgProgress = svg.querySelector('.action-progress');
+  const svgError = svg.querySelector('.action-error');
+  const svgAbort = svg.querySelector('.action-abort');
+  const svgDl = svg.querySelector('.action-dl');
   const src = element.href;
   const title = element.title;
   const id = src;
