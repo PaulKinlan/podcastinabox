@@ -24,7 +24,7 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
 
 [outputFormats]
   [outputFormats.WebAppManifest]
-    baseName = "webapp"
+    baseName = "manifest"
     isPlainText = true
     mediaType = "application/json"
 

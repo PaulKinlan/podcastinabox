@@ -1,12 +1,12 @@
 {
   "name": "{{.Title}}",
   "short_name": "{{.Title}}",
-  "description": "{{.Params.description}}",
+  "description": "{{.Site.Params.description}}",
   "start_url": "/",
   "icons": [
     { 
       "size": "512x512",
-      "src": "{{.Params.image}}"
+      "src": "{{.Site.Params.image}}"
     }
   ]
 }
