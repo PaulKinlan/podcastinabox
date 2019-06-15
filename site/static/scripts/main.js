@@ -27,7 +27,7 @@ const downloadHandler = async (event) => {
 
 const atttachDownloadHandler = () => {
   const downloads = document.querySelectorAll('.action-button');
-  downloads.forEach(download => download.addEventListener(downloadHandler));
+  downloads.forEach(download => download.addEventListener('click', downloadHandler));
 };
 
 const registerServiceWorker = async () => {
