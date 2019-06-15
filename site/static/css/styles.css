@@ -13,6 +13,11 @@ body > header {
   top: 0;
 }
 
+body > header h2 {
+  margin: auto;
+  max-width: 760px;
+}
+
 header img {
   width: 100%;
   height: 15em;
