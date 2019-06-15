@@ -44,7 +44,7 @@ const downloadHandler = async (event) => {
   };
 
   svgDl.classList.remove('action-on');
-  svgAbort.classList.remove('action-on');
+  svgAbort.classList.add('action-on');
 
   svgAbort.addEventListener('click', () => {
     bgFetch.abort(id);
