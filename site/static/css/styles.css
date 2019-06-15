@@ -42,6 +42,14 @@ main {
   margin: -1em -1em;
 }
 
+body.post > header.with-background h1 {
+  height: 15em;
+}
+
+body.post > header img {
+  object-fit: cover;
+}
+
 .entry header.with-background {
   height: 12em;
   margin: -1em -1em 1em;

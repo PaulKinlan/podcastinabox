@@ -1,6 +1,6 @@
 {{ partial "head.html" . }}
-<body>
-    <header class="limit-width header">
+<body class="post">
+    <header class="limit-width {{ if .Params.image }}with-background{{end}}">
       <h1 class="site-title">{{ if .Params.image }}<img src="{{ .Params.image }}" alt="{{.Title}}">{{end}}</h1>
       <h2>{{.Title}}</h2>
     </header>
