@@ -34,5 +34,5 @@ const registerServiceWorker = async () => {
   const sw = await navigator.serviceWorker.register('sw.js');
 };
 
-document.addEventListener('load', atttachDownloadHandler);
-document.addEventListener('load', registerServiceWorker);
+window.addEventListener('load', atttachDownloadHandler);
+window.addEventListener('load', registerServiceWorker);
