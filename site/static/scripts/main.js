@@ -6,7 +6,7 @@ const downloadHandler = async (event) => {
   event.preventDefault();
 
   const element = event.target;
-  const svg = element.closest('svg');
+  const svg = element.querySelector('svg');
   const svgProgress = svg.querySelector('.action-progress');
   const svgError = svg.querySelector('.action-error');
   const svgAbort = svg.querySelector('.action-abort');
