@@ -6,6 +6,11 @@ const downloadHandler = async (event) => {
   event.preventDefault();
 
   const element = event.target;
+  const svg = element.closest('svg');
+  const svgProgress = svg.querySelector('action-progress');
+  const svgError = svg.querySelector('action-error');
+  const svgAbort = svg.querySelector('action-abort');
+  const svgDl = svg.querySelector('action-dl');
   const src = element.href;
   const title = element.title;
   const id = src;
@@ -19,9 +24,19 @@ const downloadHandler = async (event) => {
     downloadTotal: size
   });
 
-  const bgFetchProgress = () => {
-
+  const bgFetchProgress = (progressEvent) => {
+    console.log(progressEvent);
+    switch(progressEvent.type) {
+      case 'backgroundfetchfail':
+        svg.querySelector('action-on').classList.toggle('action-on');
+        break;
+      case 'progress':
+        const percent = Math.round(progressEvent.downloaded / progressEvent.downloadTotal * 100);
+        svgProgress.style.setProperty('--progress', percent);
+        break;
+    }
   };
+
   bgFetch.addEventListener('progress', bgFetchProgress);
 };
 
