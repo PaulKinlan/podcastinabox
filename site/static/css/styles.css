@@ -98,7 +98,6 @@ body.post > header img {
 }
 
 .action-button svg {
-  pointer-events: none;
 }
 
 @keyframes action-enter {

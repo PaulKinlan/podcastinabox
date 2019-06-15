@@ -5,7 +5,7 @@ const downloadHandler = async (event) => {
 
   event.preventDefault();
 
-  const element = event.target;
+  const element = event.target.closest('a');
   const svg = element.querySelector('svg');
   const svgProgress = svg.querySelector('.action-progress');
   const svgError = svg.querySelector('.action-error');
@@ -18,7 +18,8 @@ const downloadHandler = async (event) => {
   const image = element.getAttribute('image');
 
   const reg = await navigator.serviceWorker.ready;
-  const bgFetch = await reg.backgroundFetch.fetch(id, [src], {
+  let bgFetch = await reg.backgroundFetch.getId(id) ||
+                await reg.backgroundFetch.fetch(id, [src], {
     title: title,
     icons: [{ sizes: '300x300', src: image, type: 'image/jpeg' }],
     downloadTotal: size
@@ -36,11 +37,18 @@ const downloadHandler = async (event) => {
         //svgSuccess.classList.add('action-on');
         break;
       case 'progress':
-        const percent = Math.round(progressEvent.downloaded / progressEvent.downloadTotal * 100);
+        const percent = Math.round(bgFetch.downloaded / bgFetch.downloadTotal * 100);
         svgProgress.style.setProperty('--progress', percent);
         break;
     }
   };
+
+  svgDl.classList.remove('action-on');
+  svgAbort.classList.remove('action-on');
+
+  svgAbort.addEventListener('click', () => {
+    bgFetch.abort(id);
+  })
 
   bgFetch.addEventListener('progress', bgFetchProgress);
 };
