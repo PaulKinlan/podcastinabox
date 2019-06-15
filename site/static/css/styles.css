@@ -81,6 +81,10 @@ main {
   display: inline-block;
 }
 
+.action-button svg {
+  touch-action: none;
+}
+
 @keyframes action-enter {
   from {
     transform: rotate(-90deg);
