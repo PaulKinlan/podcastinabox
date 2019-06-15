@@ -28,7 +28,12 @@ const downloadHandler = async (event) => {
     console.log(progressEvent);
     switch(progressEvent.type) {
       case 'backgroundfetchfail':
-        svg.querySelector('action-on').classList.toggle('action-on');
+        svg.querySelector('.action-on').classList.remove('action-on');
+        svgError.classList.add('action-on');
+        break;
+      case 'backgroundfetchsuccess':
+        svg.querySelector('.action-on').classList.remove('action-on');
+        //svgSuccess.classList.add('action-on');
         break;
       case 'progress':
         const percent = Math.round(progressEvent.downloaded / progressEvent.downloadTotal * 100);
