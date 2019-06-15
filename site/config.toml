@@ -16,12 +16,19 @@ disableKinds = ["taxonomy", "taxonomyTerm"]
   explicit = "no"
   block = "no"
   
-
-[outputs]
-  home = ["HTML", "RSS"]
-  section = ["HTML"]
-  page = ["HTML"]
-
 [mediaTypes]
   [mediaTypes."text/javascript"]
     suffixes = ["js", "mjs"]
+  [mediaTypes."application/json"]
+    suffixes = ["json", "manifest"]
+
+[outputFormats]
+  [outputFormats.WebAppManifest]
+    baseName = "webapp"
+    isPlainText = true
+    mediaType = "application/json"
+
+[outputs]
+  home = ["HTML", "RSS", "WebAppManifest"]
+  section = ["HTML"]
+  page = ["HTML"]
