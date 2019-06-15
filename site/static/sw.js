@@ -1,4 +1,4 @@
-ddEventListener('fetch', (event) => {
+addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
   // Skip the service worker for the feed. The page handles the caching.
