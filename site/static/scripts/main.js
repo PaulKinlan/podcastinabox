@@ -11,9 +11,10 @@ const downloadHandler = async (event) => {
   const svgError = svg.querySelector('.action-error');
   const svgAbort = svg.querySelector('.action-abort');
   const svgDl = svg.querySelector('.action-dl');
+  const href = element.closest('a.read-more').href;
   const src = element.href;
   const title = element.title;
-  const id = src;
+  const id = href;
   const size = element.getAttribute('size');
   const image = element.getAttribute('image');
   const reg = await navigator.serviceWorker.ready;
@@ -65,6 +66,11 @@ const atttachDownloadHandler = () => {
 
 const registerServiceWorker = async () => {
   const sw = await navigator.serviceWorker.register('sw.js');
+  const reg = await sw.ready;
+  const ids = await reg.backgroundFetch.getIds();
+  ids.forEach(id => {
+    // Update the UI on reload.
+  })
 };
 
 window.addEventListener('load', atttachDownloadHandler);

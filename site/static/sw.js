@@ -34,5 +34,6 @@ addEventListener('backgroundfetchfail', event => {
 });
 
 addEventListener('backgroundfetchclick', event => {
-  clients.openWindow('/');
+  const bgFetch = event.registration;
+  clients.openWindow(bgFetch.id);
 });
