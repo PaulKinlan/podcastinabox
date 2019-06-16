@@ -11,7 +11,7 @@ const downloadHandler = async (event) => {
   const svgError = svg.querySelector('.action-error');
   const svgAbort = svg.querySelector('.action-abort');
   const svgDl = svg.querySelector('.action-dl');
-  const href = element.closest('a.read-more').href;
+  const href = element.parentElement.querySelector('a.read-more').href;
   const src = element.href;
   const title = element.title;
   const id = href;
