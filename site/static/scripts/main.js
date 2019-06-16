@@ -66,7 +66,7 @@ const atttachDownloadHandler = () => {
 
 const registerServiceWorker = async () => {
   const sw = await navigator.serviceWorker.register('sw.js');
-  const reg = await sw.ready;
+  const reg = await navigator.serviceWorker.ready;
   const ids = await reg.backgroundFetch.getIds();
   ids.forEach(id => {
     // Update the UI on reload.
