@@ -1,3 +1,18 @@
+addEventListener('install', async (event) => {
+  const cache = caches.open('v1');
+  event.waitUntil(
+    cache.addAll([
+      '/scripts/main.js',
+      '/css/styles.css'
+    ]).then(() => self.skipWaiting())
+  );
+});
+
+addEventListener('activate', event => {
+  event.waitUntil(self.clients.claim());
+});
+
+
 addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
@@ -6,7 +21,7 @@ addEventListener('fetch', (event) => {
 
   event.respondWith(async function () {
 
-    // Offline first:
+    // Offline first: This should find the cached MP3 files.
     const cachedResponse = await caches.match(event.request);
     return cachedResponse || fetch(event.request);
   }());
