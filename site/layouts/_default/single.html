@@ -1,11 +1,13 @@
 {{ partial "head.html" . }}
 <body class="post">
-    <header class="limit-width {{ if .Params.image }}with-background{{end}}">
-      <h1 class="site-title">{{ if .Params.image }}<img src="{{ .Params.image }}" alt="{{.Title}}">{{end}}</h1>
-      <h2>{{.Title}}</h2>
-    </header>
-    <main>
-    <audio controls src="{{.Params.mp3}}"></audio>
-    {{ .Content }}
-    </main>
+  <header class="limit-width {{ if .Params.image }}with-background{{end}}">
+    <h1 class="site-title">{{ if .Params.image }}<img src="{{ .Params.image }}" alt="{{.Title}}">{{end}}</h1>
+    <h2>{{.Title}}</h2>
+  </header>
+  <main>
+    <div>
+      <audio controls src="{{.Params.mp3}}"></audio>
+{{ .Content }}
+    </div>
+  </main>
 </body>
