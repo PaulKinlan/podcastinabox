@@ -16,6 +16,13 @@ body > header {
 body > header h2 {
   margin: auto;
   max-width: 760px;
+  position: absolute;
+  top: 0;
+  text-align: center;
+  left: 0;
+  margin: 1em;
+  right: 0;
+  color: white;
 }
 
 header img {
